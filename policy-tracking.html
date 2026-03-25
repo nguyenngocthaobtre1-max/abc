@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbario | Chính Sách & Tra Cứu Đơn Hàng</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        herbario: {
+                            green: '#2D5A27',
+                            cream: '#F9F5F0',
+                            dark: '#333333',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { background-color: #F9F5F0; color: #333333; }
+        
+        /* Hiệu ứng Fade-in mượt mà cho Tabs CSS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        
+        /* Ẩn nội dung tab mặc định */
+        .tab-content { display: none; }
+        
+        /* Logic CSS Tab System (Không dùng JS) */
+        #tab1:checked ~ .tabs-container .tab-content-1,
+        #tab2:checked ~ .tabs-container .tab-content-2,
+        #tab3:checked ~ .tabs-container .tab-content-3 {
+            display: block;
+        }
+
+        /* Style cho Nút Tab khi Active */
+        #tab1:checked ~ .tabs-nav label[for="tab1"],
+        #tab2:checked ~ .tabs-nav label[for="tab2"],
+        #tab3:checked ~ .tabs-nav label[for="tab3"] {
+            background-color: #2D5A27;
+            color: white;
+            border-color: #2D5A27;
+            box-shadow: 0 4px 6px -1px rgba(45, 90, 39, 0.2);
+        }
+
+        /* Input Form Focus */
+        .form-input {
+            width: 100%; border: 2px solid #e5e7eb; border-radius: 1rem; 
+            padding: 1rem 1.25rem; font-size: 1rem; transition: all 0.3s ease;
+        }
+        .form-input:focus { outline: none; border-color: #2D5A27; background-color: #ffffff; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <main>
+
+        <section class="py-12 md:py-20 bg-white">
+            <div class="max-w-[1000px] mx-auto px-4 lg:px-8">
+                
+                <div class="text-center mb-12">
+                    <span class="inline-block py-1 px-3 rounded-full bg-green-50 text-herbario-green text-xs font-bold uppercase tracking-wider mb-4">Minh bạch - Tận tâm</span>
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-herbario-dark mb-4">Trung Tâm Chính Sách</h2>
+                    <p class="text-base text-gray-600">Mọi quyền lợi của bạn khi mua sắm tại Herbario đều được đảm bảo 100%.</p>
+                </div>
+
+                <div class="relative">
+                    <input type="radio" name="policy-tabs" id="tab1" class="hidden" checked>
+                    <input type="radio" name="policy-tabs" id="tab2" class="hidden">
+                    <input type="radio" name="policy-tabs" id="tab3" class="hidden">
+
+                    <div class="tabs-nav flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+                        <label for="tab1" class="cursor-pointer px-6 py-3 rounded-full border border-gray-200 text-gray-600 font-semibold text-sm transition-all hover:border-herbario-green select-none">📦 Giao hàng</label>
+                        <label for="tab2" class="cursor-pointer px-6 py-3 rounded-full border border-gray-200 text-gray-600 font-semibold text-sm transition-all hover:border-herbario-green select-none">🔄 Đổi trả 1 Chạm</label>
+                        <label for="tab3" class="cursor-pointer px-6 py-3 rounded-full border border-gray-200 text-gray-600 font-semibold text-sm transition-all hover:border-herbario-green select-none">🔒 Bảo mật</label>
+                    </div>
+
+                    <div class="tabs-container bg-herbario-cream rounded-3xl p-6 md:p-10 shadow-sm border border-gray-100 min-h-[300px]">
+                        
+                        <div class="tab-content tab-content-1 animate-fade-in">
+                            <h3 class="font-serif text-2xl font-bold text-herbario-dark mb-6 border-b border-gray-200 pb-4">Chính sách Giao hàng Toàn quốc</h3>
+                            <div class="space-y-6 text-gray-700 leading-relaxed">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-herbario-green font-bold">1</div>
+                                    <div>
+                                        <h4 class="font-bold text-herbario-dark text-lg mb-1">Thời gian vận chuyển</h4>
+                                        <p>Nội thành khu vực TP.HCM & Hà Nội: Giao nhanh trong <strong>24h</strong>. Các tỉnh thành khác: Nhận hàng từ <strong>2-3 ngày</strong> làm việc.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-herbario-green font-bold">2</div>
+                                    <div>
+                                        <h4 class="font-bold text-herbario-dark text-lg mb-1">Phí vận chuyển (Freeship)</h4>
+                                        <p>Miễn phí vận chuyển 100% cho mọi đơn hàng có giá trị từ <strong>250.000đ</strong> trở lên.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-4 bg-green-50 rounded-xl border border-herbario-green/20 mt-6">
+                                    <svg class="w-8 h-8 text-herbario-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div>
+                                        <h4 class="font-bold text-herbario-green text-sm uppercase tracking-wider mb-1">Bao bì thân thiện môi trường</h4>
+                                        <p class="text-sm">Herbario sử dụng 100% hộp giấy tái chế và hạn chế tối đa nilon chống sốc, cùng bạn bảo vệ hệ sinh thái.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content tab-content-2 animate-fade-in">
+                            <h3 class="font-serif text-2xl font-bold text-herbario-dark mb-6 border-b border-gray-200 pb-4">Quy trình Đổi trả "1 Chạm"</h3>
+                            <p class="text-gray-700 mb-6">Herbario cam kết hỗ trợ đổi trả hoặc hoàn tiền 100% trong vòng <strong>7 ngày</strong> kể từ khi nhận hàng đối với các trường hợp: sản phẩm có lỗi từ nhà sản xuất, hoặc hư hỏng do quá trình vận chuyển.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-center">
+                                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                                    <span class="text-3xl mb-3 block">📸</span>
+                                    <h4 class="font-bold text-herbario-dark text-sm mb-2">Bước 1</h4>
+                                    <p class="text-xs text-gray-500">Chụp ảnh/video tình trạng sản phẩm lỗi.</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                                    <span class="text-3xl mb-3 block">💬</span>
+                                    <h4 class="font-bold text-herbario-dark text-sm mb-2">Bước 2</h4>
+                                    <p class="text-xs text-gray-500">Gửi ảnh qua khung Chatbot góc phải màn hình.</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-herbario-green/30">
+                                    <span class="text-3xl mb-3 block">✅</span>
+                                    <h4 class="font-bold text-herbario-green text-sm mb-2">Bước 3</h4>
+                                    <p class="text-xs text-gray-500">Nhân viên xác nhận và đổi hàng mới ngay trong 24h.</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 italic text-center">Không thủ tục rườm rà. Lỗi là đổi!</p>
+                        </div>
+
+                        <div class="tab-content tab-content-3 animate-fade-in">
+                            <h3 class="font-serif text-2xl font-bold text-herbario-dark mb-6 border-b border-gray-200 pb-4">Cam kết Bảo mật Thông tin</h3>
+                            <div class="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base">
+                                <p>Sự riêng tư của bạn là ưu tiên hàng đầu tại <strong>Herbario Vietnam</strong>. Chúng tôi cam kết 100% dữ liệu cá nhân (Họ tên, số điện thoại, địa chỉ) thu thập được chỉ sử dụng duy nhất cho mục đích:</p>
+                                <ul class="list-disc pl-6 space-y-2 font-medium text-herbario-dark">
+                                    <li>Xử lý và giao đơn hàng mỹ phẩm chính hãng đến tận tay bạn.</li>
+                                    <li>Thông báo các chương trình ưu đãi tri ân khách hàng thân thiết.</li>
+                                </ul>
+                                <p class="mt-4 p-4 bg-white rounded-xl shadow-sm">
+                                    Herbario tuyệt đối <strong class="text-red-500">KHÔNG</strong> bán, chia sẻ hay trao đổi thông tin khách hàng cho bất kỳ bên thứ ba nào khác. Hệ thống website được mã hóa bảo mật chuẩn SSL toàn cầu.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="py-12 md:py-24 bg-herbario-green text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+            
+            <div class="max-w-[800px] mx-auto px-4 lg:px-8 relative z-10">
+                
+                <div class="text-center mb-10">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold mb-4">Kiểm Tra Đơn Hàng</h2>
+                    <p class="text-herbario-cream/80 text-base">Nhập số điện thoại đặt hàng để theo dõi hành trình mái tóc khỏe đang trên đường đến với bạn.</p>
+                </div>
+
+                <form id="trackingForm" class="bg-white p-2 rounded-2xl flex flex-col md:flex-row shadow-2xl mb-12">
+                    <input type="tel" id="trackInput" placeholder="Nhập Số điện thoại của bạn (VD: 0912 345 678)" required class="w-full bg-transparent border-none text-herbario-dark font-medium py-4 px-6 outline-none text-base md:text-lg">
+                    <button type="submit" id="trackBtn" class="shrink-0 bg-herbario-dark hover:bg-black text-white font-bold px-8 py-4 rounded-xl transition-colors uppercase tracking-wider min-h-[56px] mt-2 md:mt-0">
+                        Kiểm Tra Ngay
+                    </button>
+                </form>
+
+                <div id="trackingResult" class="hidden animate-fade-in bg-white text-herbario-dark rounded-3xl p-6 md:p-10 shadow-xl relative">
+                    
+                    <h3 class="font-serif font-bold text-xl mb-8 text-center border-b border-gray-100 pb-4">Mã đơn hàng: <span class="text-herbario-green">#HB98246</span></h3>
+                    
+                    <div class="relative flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-10">
+                        <div class="hidden md:block absolute top-1/2 left-10 right-10 h-1 bg-gray-200 -z-10 -translate-y-1/2"></div>
+                        <div class="hidden md:block absolute top-1/2 left-10 w-1/2 h-1 bg-herbario-green -z-10 -translate-y-1/2"></div>
+
+                        <div class="flex md:flex-col items-center gap-4 md:gap-2 text-center relative bg-white md:bg-transparent pr-4 md:pr-0">
+                            <div class="w-12 h-12 rounded-full bg-herbario-green text-white flex items-center justify-center shadow-md">
+                                <span class="text-xl">📦</span>
+                            </div>
+                            <div class="text-left md:text-center">
+                                <p class="font-bold text-sm text-herbario-green">Đã tiếp nhận</p>
+                                <p class="text-xs text-gray-500">10:00 - 25/03/2026</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex md:flex-col items-center gap-4 md:gap-2 text-center relative bg-white md:bg-transparent pr-4 md:pr-0">
+                            <div class="w-12 h-12 rounded-full bg-herbario-green text-white flex items-center justify-center shadow-md">
+                                <span class="text-xl">🏭</span>
+                            </div>
+                            <div class="text-left md:text-center">
+                                <p class="font-bold text-sm text-herbario-green">Đóng gói tại Kho</p>
+                                <p class="text-xs text-gray-500">14:30 - 25/03/2026</p>
+                            </div>
+                        </div>
+
+                        <div class="flex md:flex-col items-center gap-4 md:gap-2 text-center relative bg-white md:bg-transparent pr-4 md:pr-0">
+                            <div class="w-12 h-12 rounded-full border-2 border-herbario-green bg-green-50 flex items-center justify-center shadow-md animate-pulse">
+                                <span class="text-xl">🚚</span>
+                            </div>
+                            <div class="text-left md:text-center">
+                                <p class="font-bold text-sm text-herbario-dark">Đang giao hàng</p>
+                                <p class="text-xs text-herbario-green font-medium">Sắp đến nơi</p>
+                            </div>
+                        </div>
+
+                        <div class="flex md:flex-col items-center gap-4 md:gap-2 text-center relative bg-white md:bg-transparent pr-4 md:pr-0">
+                            <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center">
+                                <span class="text-xl opacity-50">✅</span>
+                            </div>
+                            <div class="text-left md:text-center">
+                                <p class="font-bold text-sm text-gray-400">Thành công</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-herbario-cream rounded-xl p-5 border border-herbario-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-8 h-8 text-herbario-gold shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"></path></svg>
+                            <div>
+                                <p class="text-sm font-medium text-herbario-dark">Bạn đã tích lũy được <strong class="text-herbario-green text-lg">150</strong> điểm thưởng.</p>
+                                <p class="text-xs text-gray-500">Dùng điểm này giảm giá cho lần mua Xịt tóc tiếp theo nhé!</p>
+                            </div>
+                        </div>
+                        <a href="#blog" class="shrink-0 text-sm font-bold text-herbario-green underline hover:text-green-800">Đọc mẹo chăm sóc tóc &rarr;</a>
+                    </div>
+                </div>
+
+                <div id="trackingError" class="hidden animate-fade-in bg-white/10 backdrop-blur-md text-white rounded-2xl p-6 border border-red-400/30 text-center">
+                    <svg class="w-12 h-12 text-red-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <p class="font-medium text-lg mb-1">Rất tiếc, Herbario chưa tìm thấy đơn hàng này.</p>
+                    <p class="text-white/70 text-sm">Bạn kiểm tra lại số điện thoại đã nhập hoặc nhắn tin cho Chuyên gia để được hỗ trợ nhé!</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const trackInput = document.getElementById('trackInput');
+        const trackingForm = document.getElementById('trackingForm');
+        const resultDiv = document.getElementById('trackingResult');
+        const errorDiv = document.getElementById('trackingError');
+        const trackBtn = document.getElementById('trackBtn');
+
+        // Auto-format số điện thoại (thêm khoảng trắng cho dễ nhìn)
+        trackInput.addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,3})(\d{0,3})/);
+            e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2] + (x[3] ? ' ' + x[3] : '');
+        });
+
+        // Giả lập API Tracking Đơn Hàng
+        trackingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Xóa khoảng trắng để kiểm tra độ dài số điện thoại
+            const rawPhone = trackInput.value.replace(/\s/g, '');
+            
+            // Hiệu ứng Đang tải (Loading state)
+            const originalText = trackBtn.innerText;
+            trackBtn.innerText = "Đang kiểm tra...";
+            trackBtn.classList.add('opacity-80', 'cursor-not-allowed');
+            
+            // Ẩn các kết quả cũ
+            resultDiv.classList.add('hidden');
+            errorDiv.classList.add('hidden');
+
+            // Giả lập độ trễ mạng (0.8 giây)
+            setTimeout(() => {
+                trackBtn.innerText = originalText;
+                trackBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                
+                // Logic giả lập: Nếu nhập đủ 10 số thì báo thành công, sai thì báo lỗi
+                if(rawPhone.length >= 10 && rawPhone.startsWith('0')) {
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    errorDiv.classList.remove('hidden');
+                }
+            }, 800);
+        });
+    </script>
+
+</body>
+</html>

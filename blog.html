@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbario | Cẩm Nang Chăm Sóc Tóc Thuần Chay</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        herbario: {
+                            green: '#2D5A27',
+                            cream: '#F9F5F0',
+                            dark: '#333333',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { background-color: #F9F5F0; color: #333333; }
+        
+        /* Hiệu ứng Hover Zoom cho Card ảnh */
+        .img-hover-zoom { transition: transform 0.5s ease; }
+        .group:hover .img-hover-zoom { transform: scale(1.05); }
+
+        /* Reading Progress Bar giả lập */
+        .reading-progress {
+            position: fixed; top: 0; left: 0; height: 4px; background: #2D5A27;
+            width: 35%; /* Giả lập đang đọc được 35% */ z-index: 100;
+        }
+
+        /* Ẩn scrollbar cho bộ lọc mobile */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Placeholder styling */
+        .img-placeholder { background: linear-gradient(135deg, #e5e5e5 0%, #f2f2f2 100%); }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <div class="reading-progress"></div>
+
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40">
+        <div class="max-w-[1200px] mx-auto px-4 lg:px-8 flex items-center justify-between h-16 md:h-20">
+            <a href="index.html" class="flex items-center gap-2 text-herbario-green font-serif font-bold text-xl md:text-2xl tracking-widest uppercase">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Herbario
+            </a>
+            <a href="index.html#checkout" class="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-2.5 bg-herbario-green text-white font-semibold text-sm rounded-xl hover:bg-green-800 transition-colors shadow-sm">
+                Mua Sản Phẩm
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="py-12 md:py-20 bg-herbario-cream">
+            <div class="max-w-[1200px] mx-auto px-4 lg:px-8">
+                
+                <div class="mb-10 text-center md:text-left">
+                    <nav class="text-sm font-medium text-gray-400 mb-4 flex items-center justify-center md:justify-start gap-2">
+                        <a href="index.html" class="hover:text-herbario-green transition-colors">Trang chủ</a>
+                        <span>/</span>
+                        <span class="text-herbario-green">Cẩm nang tóc</span>
+                    </nav>
+                    <h1 class="font-serif text-3xl md:text-5xl font-bold text-herbario-dark leading-tight mb-4">
+                        Cẩm nang chăm sóc tóc <br class="hidden md:block"> từ thảo dược thuần chay
+                    </h1>
+                </div>
+
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-12">
+                    <div class="w-full lg:w-1/3 relative">
+                        <input type="text" placeholder="Tìm kiếm: Trị rụng tóc, Cách dùng bồ kết..." class="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-herbario-green focus:ring-1 focus:ring-herbario-green transition-all shadow-sm">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <div class="w-full lg:w-auto flex overflow-x-auto hide-scrollbar gap-3 pb-2 lg:pb-0">
+                        <button class="whitespace-nowrap px-5 py-2.5 rounded-xl bg-herbario-green text-white font-semibold text-sm shadow-sm transition-colors">Tất cả bài viết</button>
+                        <button class="whitespace-nowrap px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:border-herbario-green hover:text-herbario-green font-semibold text-sm shadow-sm transition-colors">Mẹo trị rụng tóc</button>
+                        <button class="whitespace-nowrap px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:border-herbario-green hover:text-herbario-green font-semibold text-sm shadow-sm transition-colors">Kiến thức thành phần</button>
+                        <button class="whitespace-nowrap px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:border-herbario-green hover:text-herbario-green font-semibold text-sm shadow-sm transition-colors">Lối sống Thuần chay</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                        <a href="#single-post" class="block relative aspect-[4/3] overflow-hidden img-placeholder flex items-center justify-center">
+                            <span class="text-gray-400 font-medium text-sm z-10">[Ảnh Bưởi & Bồ Kết]</span>
+                            <img src="" alt="Mẹo dùng tinh dầu bưởi" loading="lazy" class="absolute inset-0 w-full h-full object-cover img-hover-zoom">
+                        </a>
+                        <div class="p-6">
+                            <span class="text-herbario-green font-bold text-xs uppercase tracking-wider mb-3 block">Mẹo trị rụng tóc</span>
+                            <h3 class="font-serif text-xl font-bold text-herbario-dark mb-3 leading-snug group-hover:text-herbario-green transition-colors">
+                                <a href="#single-post">5 Cách dùng tinh dầu bưởi kích thích mọc tóc hiệu quả tại nhà</a>
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Limonene trong vỏ bưởi là "thần dược" giúp làm sạch da đầu và nang tóc. Cùng Herbario tìm hiểu cách sử dụng đúng chuẩn nhé.</p>
+                            <a href="#single-post" class="inline-flex items-center text-sm font-bold text-herbario-dark group-hover:text-herbario-green transition-colors">Đọc tiếp <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                        <a href="#single-post" class="block relative aspect-[4/3] overflow-hidden img-placeholder flex items-center justify-center">
+                            <span class="text-gray-400 font-medium text-sm z-10">[Ảnh Mẹ Bỉm Sữa]</span>
+                            <img src="" alt="Mẹ bỉm sữa dùng xịt tóc" loading="lazy" class="absolute inset-0 w-full h-full object-cover img-hover-zoom">
+                        </a>
+                        <div class="p-6">
+                            <span class="text-herbario-green font-bold text-xs uppercase tracking-wider mb-3 block">Review Thực tế</span>
+                            <h3 class="font-serif text-xl font-bold text-herbario-dark mb-3 leading-snug group-hover:text-herbario-green transition-colors">
+                                <a href="#single-post">Tại sao xịt tóc Herbario lại được mẹ bỉm sữa tin dùng đến vậy?</a>
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Nỗi lo rụng tóc từng mảng sau sinh sẽ được giải quyết hoàn toàn nhờ liệu pháp an toàn không hóa chất từ Herbario.</p>
+                            <a href="#single-post" class="inline-flex items-center text-sm font-bold text-herbario-dark group-hover:text-herbario-green transition-colors">Đọc tiếp <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                        <a href="#single-post" class="block relative aspect-[4/3] overflow-hidden img-placeholder flex items-center justify-center">
+                            <span class="text-gray-400 font-medium text-sm z-10">[Ảnh Nguyên Liệu Xanh]</span>
+                            <img src="" alt="Mỹ phẩm thuần chay" loading="lazy" class="absolute inset-0 w-full h-full object-cover img-hover-zoom">
+                        </a>
+                        <div class="p-6">
+                            <span class="text-herbario-green font-bold text-xs uppercase tracking-wider mb-3 block">Lối Sống Thuần Chay</span>
+                            <h3 class="font-serif text-xl font-bold text-herbario-dark mb-3 leading-snug group-hover:text-herbario-green transition-colors">
+                                <a href="#single-post">Mỹ phẩm thuần chay: Xu hướng làm đẹp bền vững 2026</a>
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Không thử nghiệm trên động vật, tôn trọng tự nhiên và mang lại hiệu quả thực chất, mỹ phẩm Vegan đang lên ngôi.</p>
+                            <a href="#single-post" class="inline-flex items-center text-sm font-bold text-herbario-dark group-hover:text-herbario-green transition-colors">Đọc tiếp <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="single-post" class="py-12 md:py-24 bg-white border-t border-gray-100">
+            <div class="max-w-[1200px] mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-12 lg:gap-16">
+                
+                <article class="w-full lg:max-w-[800px]">
+                    <header class="mb-10">
+                        <span class="inline-block py-1 px-3 rounded-full bg-green-50 text-herbario-green text-xs font-bold uppercase tracking-wider mb-4">Mẹo Trị Rụng Tóc</span>
+                        <h1 class="font-serif text-3xl md:text-4xl lg:text-[40px] font-bold text-herbario-dark leading-tight mb-6">
+                            5 Cách dùng tinh dầu bưởi kích thích mọc tóc hiệu quả tại nhà
+                        </h1>
+                        <div class="flex items-center gap-4 text-sm text-gray-500 pb-6 border-b border-gray-100">
+                            <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> 25 Tháng 3, 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 5 phút đọc</span>
+                        </div>
+                    </header>
+
+                    <details class="lg:hidden mb-8 bg-gray-50 border border-gray-200 rounded-xl p-4">
+                        <summary class="font-serif font-bold text-herbario-dark text-lg cursor-pointer outline-none flex items-center justify-between">
+                            Nội dung bài viết
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <ul class="mt-4 space-y-3 text-sm text-gray-600">
+                            <li><a href="#phan1" class="hover:text-herbario-green">1. Tác dụng của Limonene trong vỏ bưởi</a></li>
+                            <li><a href="#phan2" class="hover:text-herbario-green">2. Vì sao nên kết hợp với Bồ kết?</a></li>
+                            <li><a href="#phan3" class="hover:text-herbario-green">3. Hướng dẫn sử dụng đúng cách</a></li>
+                        </ul>
+                    </details>
+
+                    <div class="prose prose-lg prose-gray max-w-none text-[16px] md:text-[18px] leading-relaxed text-gray-700">
+                        <p class="mb-6 font-medium text-xl text-gray-800">Tinh dầu bưởi từ lâu đã được ví như "thần dược" của phụ nữ Việt Nam trong việc chăm sóc mái tóc. Nhưng bạn có biết cách dùng sao cho hiệu quả nhất chưa?</p>
+                        
+                        <div class="w-full aspect-video bg-gray-100 rounded-2xl mb-8 flex items-center justify-center border border-gray-200 shadow-sm overflow-hidden">
+                            <span class="text-gray-400">[Hình ảnh: Vỏ bưởi tươi và tóc]</span>
+                        </div>
+
+                        <h2 id="phan1" class="font-serif text-2xl font-bold text-herbario-dark mt-10 mb-4">1. Cơ chế kích thích mọc tóc của vỏ bưởi</h2>
+                        <p class="mb-6">Nghiên cứu khoa học chỉ ra rằng, trong vỏ bưởi nguyên chất chứa nồng độ <strong class="text-herbario-green">Limonene</strong> cực cao. Hoạt chất này giúp kháng khuẩn tự nhiên, làm sạch bã nhờn gây bít tắc nang tóc.</p>
+
+                        <div class="my-10 bg-green-50/80 border-l-4 border-herbario-green p-6 md:p-8 rounded-r-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+                            <div>
+                                <h4 class="font-serif font-bold text-lg text-herbario-dark mb-2">Bạn đang gặp tình trạng rụng tóc?</h4>
+                                <p class="text-sm text-gray-600 mb-0">Thử ngay Xịt tóc Herbario - Chiết xuất bưởi & bồ kết nguyên chất. Giảm rụng rõ rệt sau 14 ngày.</p>
+                            </div>
+                            <a href="index.html#checkout" class="shrink-0 px-6 py-3 bg-herbario-green text-white font-semibold text-sm rounded-xl hover:bg-green-800 transition-colors shadow-sm whitespace-nowrap">Xem sản phẩm</a>
+                        </div>
+
+                        <h2 id="phan2" class="font-serif text-2xl font-bold text-herbario-dark mt-10 mb-4">2. Sự kết hợp hoàn hảo cùng Bồ Kết</h2>
+                        <p class="mb-6">Nếu bưởi làm sạch da đầu, thì Saponin trong bồ kết chính là lớp "áo giáp" bảo vệ và nuôi dưỡng sợi tóc đen mượt từ gốc đến ngọn.</p>
+                    </div>
+
+                    <div class="mt-12 py-6 border-y border-gray-100 flex items-center gap-4">
+                        <span class="font-serif font-bold text-herbario-dark text-sm uppercase">Chia sẻ bài viết:</span>
+                        <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-herbario-green hover:text-herbario-green transition-colors text-gray-500">FB</button>
+                        <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-herbario-green hover:text-herbario-green transition-colors text-gray-500">ZL</button>
+                    </div>
+
+                    <div class="mt-12 bg-white border border-gray-200 rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center gap-8 shadow-sm hover:border-herbario-green transition-colors">
+                        <div class="w-32 h-32 shrink-0 bg-gray-100 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                            <span class="text-xs text-gray-400 font-medium text-center">[Ảnh<br>Chai Xịt]</span>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <h3 class="font-serif text-xl font-bold text-herbario-dark mb-2">Nước xịt dưỡng tóc Vỏ bưởi & Bồ kết</h3>
+                            <p class="text-gray-500 text-sm mb-4">Bí quyết thuần chay trả lại cho bạn mái tóc dày, óng ả và khỏe mạnh từ sâu bên trong nang tóc.</p>
+                            <div class="flex items-center justify-center sm:justify-start gap-4">
+                                <span class="font-serif font-bold text-xl text-herbario-green">245.000đ</span>
+                                <a href="index.html#checkout" class="px-6 py-2.5 bg-herbario-green text-white font-semibold text-sm rounded-xl hover:bg-green-800 transition-colors">Mua Ngay</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+
+                <aside class="hidden lg:block w-full max-w-[300px]">
+                    <div class="sticky top-28 bg-gray-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                        <h3 class="font-serif text-lg font-bold text-herbario-dark mb-4 border-b border-gray-200 pb-3">Nội dung bài viết</h3>
+                        <ul class="space-y-3 text-sm font-medium">
+                            <li><a href="#phan1" class="text-herbario-green block transition-colors">1. Tác dụng của Limonene trong vỏ bưởi</a></li>
+                            <li><a href="#phan2" class="text-gray-500 hover:text-herbario-green block transition-colors">2. Vì sao nên kết hợp với Bồ kết?</a></li>
+                            <li><a href="#phan3" class="text-gray-500 hover:text-herbario-green block transition-colors">3. Hướng dẫn sử dụng đúng cách</a></li>
+                        </ul>
+                        
+                        <a href="index.html#checkout" class="mt-8 block bg-herbario-cream border border-herbario-green/20 rounded-xl p-5 text-center group">
+                            <span class="block font-bold text-herbario-dark mb-1 group-hover:text-herbario-green transition-colors">Tặng mã HERBARIO10</span>
+                            <span class="block text-xs text-gray-500">Giảm ngay 10% khi mua Xịt tóc hôm nay.</span>
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

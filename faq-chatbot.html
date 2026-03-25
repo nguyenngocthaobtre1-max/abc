@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbario | Chuyên Gia Tư Vấn & FAQ</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        herbario: {
+                            green: '#2D5A27',
+                            cream: '#F9F5F0',
+                            dark: '#333333',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { background-color: #F9F5F0; color: #333333; }
+        
+        /* FAQ Accordion Styling */
+        details { transition: all 0.3s ease; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        /* Xoay icon khi mở details */
+        details[open] summary ~ * { animation: slideDown 0.3s ease-in-out; }
+        details[open] summary .icon-plus { transform: rotate(45deg); color: #2D5A27; }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Chatbot Typing Animation */
+        .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Ẩn thanh cuộn trong khung chat */
+        .chat-body::-webkit-scrollbar { width: 4px; }
+        .chat-body::-webkit-scrollbar-track { background: transparent; }
+        .chat-body::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+    </style>
+</head>
+<body class="font-sans antialiased relative">
+
+    <main>
+
+        <section class="py-16 md:py-32 bg-white min-h-screen">
+            <div class="max-w-[800px] mx-auto px-4 lg:px-8">
+                
+                <div class="text-center mb-12 md:mb-16">
+                    <span class="inline-block py-1 px-3 rounded-full bg-green-50 text-herbario-green text-xs font-bold uppercase tracking-wider mb-4">Hỗ trợ khách hàng</span>
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-herbario-dark mb-6">Giải đáp từ Chuyên gia</h2>
+                    <p class="text-base md:text-lg text-gray-600">Herbario thấu hiểu mọi nỗi lo của bạn. Hãy tìm kiếm câu trả lời ngay bên dưới.</p>
+                </div>
+
+                <div class="relative mb-10 max-w-lg mx-auto">
+                    <input type="text" id="faqSearch" placeholder="Nhập câu hỏi (VD: bết tóc, mùi hương...)" class="w-full bg-herbario-cream border-2 border-transparent focus:bg-white focus:border-herbario-green rounded-2xl py-4 pl-12 pr-4 text-herbario-dark font-medium outline-none transition-all shadow-sm">
+                    <svg class="w-6 h-6 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+
+                <div class="space-y-4" id="faqContainer">
+                    
+                    <details class="faq-item group bg-gray-50 border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:border-herbario-green/50 transition-colors">
+                        <summary class="flex items-center justify-between p-6 outline-none">
+                            <h2 class="font-serif font-bold text-lg md:text-xl text-herbario-dark pr-6">Xịt tóc Herbario có gây bết tóc không?</h2>
+                            <span class="icon-plus w-8 h-8 flex items-center justify-center shrink-0 rounded-full bg-white text-gray-400 transition-transform duration-300 shadow-sm">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                            Hoàn toàn <strong>không</strong>. Với kết cấu dạng nước (Water-based) và công nghệ chiết xuất tinh khiết 4.0, tinh chất sẽ thẩm thấu ngay vào da đầu chỉ sau 30 giây massage, để lại bề mặt khô thoáng mà không hề gây cảm giác nặng đầu hay bết dính như các loại tinh dầu ép thủ công.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group bg-gray-50 border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:border-herbario-green/50 transition-colors">
+                        <summary class="flex items-center justify-between p-6 outline-none">
+                            <h2 class="font-serif font-bold text-lg md:text-xl text-herbario-dark pr-6">Mùi bưởi có nồng nặc hay dùng hương liệu không?</h2>
+                            <span class="icon-plus w-8 h-8 flex items-center justify-center shrink-0 rounded-full bg-white text-gray-400 transition-transform duration-300 shadow-sm">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                            Sản phẩm cam kết <strong>0% hương liệu hóa học</strong>. Mùi hương bạn cảm nhận được là mùi thơm thanh khiết, tươi mát của tinh dầu vỏ bưởi tự nhiên, mang lại cảm giác thư giãn tuyệt đối như đang ở Spa. Mùi sẽ phai nhẹ sau khoảng 1-2 tiếng lưu trên tóc.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group bg-gray-50 border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:border-herbario-green/50 transition-colors">
+                        <summary class="flex items-center justify-between p-6 outline-none">
+                            <h2 class="font-serif font-bold text-lg md:text-xl text-herbario-dark pr-6">Dùng bao lâu thì thấy tóc con mọc?</h2>
+                            <span class="icon-plus w-8 h-8 flex items-center justify-center shrink-0 rounded-full bg-white text-gray-400 transition-transform duration-300 shadow-sm">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                            Tùy thuộc vào cơ địa và tình trạng nang tóc, thông thường khách hàng của Herbario sẽ cảm nhận sự thay đổi theo lộ trình:
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><strong>Sau 14 ngày:</strong> Giảm rụng rõ rệt khi gội đầu hoặc chải tóc.</li>
+                                <li><strong>Sau 4 tuần:</strong> Tóc con bắt đầu mọc lởm chởm ở các vùng bò liếm hoặc đỉnh đầu.</li>
+                            </ul>
+                            <a href="index.html#checkout" class="text-herbario-green font-bold mt-4 inline-block hover:underline">Mua ngay liệu trình 30 ngày &rarr;</a>
+                        </div>
+                    </details>
+
+                    <div id="noResult" class="hidden text-center py-10">
+                        <p class="text-gray-500 mb-4">Không tìm thấy câu hỏi phù hợp.</p>
+                        <button onclick="document.getElementById('chatbot-toggle').click();" class="text-herbario-green font-bold underline">Hỏi Chuyên gia Tóc Xanh ngay!</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <button id="chatbot-toggle" class="fixed bottom-6 right-6 w-14 h-14 md:w-16 md:h-16 bg-herbario-green text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-105 hover:bg-green-800 transition-all z-[100]">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        <span class="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full"></span>
+    </button>
+
+    <div id="chatbot-window" class="fixed bottom-24 right-4 md:right-6 w-[calc(100%-32px)] md:w-[380px] bg-white rounded-2xl shadow-2xl border border-gray-100 z-[100] flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-10 pointer-events-none">
+        
+        <div class="bg-herbario-green p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-herbario-green font-bold text-xl shrink-0">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Herbario&backgroundColor=F9F5F0" alt="Bot" class="w-full h-full rounded-full p-1">
+                </div>
+                <div>
+                    <h3 class="text-white font-serif font-bold text-base leading-tight">Chuyên Gia Tóc Xanh</h3>
+                    <span class="text-white/80 text-xs flex items-center gap-1"><span class="w-2 h-2 bg-green-400 rounded-full inline-block"></span> Đang trực tuyến</span>
+                </div>
+            </div>
+            <button id="chatbot-close" class="text-white/80 hover:text-white p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div id="chat-body" class="chat-body flex-1 p-4 h-[320px] overflow-y-auto bg-herbario-cream flex flex-col gap-4">
+            </div>
+
+        <div id="chat-options" class="p-4 bg-white border-t border-gray-100 flex flex-col gap-2">
+            </div>
+
+    </div>
+
+    <script>
+        // ================= 1. XỬ LÝ FAQ LIVE FILTER =================
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResult = document.getElementById('noResult');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let hasResult = false;
+
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(term)) {
+                    item.style.display = 'block';
+                    hasResult = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            noResult.style.display = hasResult ? 'none' : 'block';
+        });
+
+
+        // ================= 2. SMART CHATBOT LOGIC =================
+        const toggleBtn = document.getElementById('chatbot-toggle');
+        const closeBtn = document.getElementById('chatbot-close');
+        const chatWindow = document.getElementById('chatbot-window');
+        const chatBody = document.getElementById('chat-body');
+        const chatOptions = document.getElementById('chat-options');
+
+        let chatState = 0; // Trạng thái kịch bản
+
+        // Bật / Tắt cửa sổ Chat
+        function toggleChat() {
+            const isOpen = chatWindow.classList.contains('opacity-100');
+            if (isOpen) {
+                chatWindow.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                chatWindow.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            } else {
+                chatWindow.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                chatWindow.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                if (chatBody.innerHTML.trim() === '') initChat(); // Bắt đầu kịch bản nếu trống
+            }
+        }
+
+        toggleBtn.addEventListener('click', toggleChat);
+        closeBtn.addEventListener('click', toggleChat);
+
+        // Render tin nhắn của Bot
+        function addBotMsg(text, delay = 600) {
+            // Hiển thị Typing...
+            const typingId = 'typing-' + Date.now();
+            const typingHtml = `
+                <div id="${typingId}" class="self-start bg-white border border-gray-200 text-gray-800 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%] flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full typing-dot"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full typing-dot"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full typing-dot"></span>
+                </div>
+            `;
+            chatBody.insertAdjacentHTML('beforeend', typingHtml);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Xóa Typing và hiện Text thật
+            setTimeout(() => {
+                document.getElementById(typingId).remove();
+                const msgHtml = `
+                    <div class="self-start bg-white border border-gray-200 text-gray-800 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%] text-sm leading-relaxed">
+                        ${text}
+                    </div>
+                `;
+                chatBody.insertAdjacentHTML('beforeend', msgHtml);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                saveChat();
+            }, delay);
+        }
+
+        // Render tin nhắn của User
+        function addUserMsg(text) {
+            const msgHtml = `
+                <div class="self-end bg-herbario-green text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm max-w-[85%] text-sm leading-relaxed">
+                    ${text}
+                </div>
+            `;
+            chatBody.insertAdjacentHTML('beforeend', msgHtml);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            chatOptions.innerHTML = ''; // Ẩn nút sau khi chọn
+            saveChat();
+        }
+
+        // Kịch bản (Mini Survey)
+        function initChat() {
+            // Chào mừng (State 0)
+            addBotMsg('Chào bạn! Mái tóc bạn đang gặp vấn đề gì? Hãy để Herbario giúp nhé! 🌿', 800);
+            setTimeout(() => {
+                renderOptions([
+                    { text: 'Tóc rụng nhiều sau sinh', action: () => nextState('Tóc rụng nhiều sau sinh') },
+                    { text: 'Tóc thưa, mỏng, lâu mọc', action: () => nextState('Tóc thưa, mỏng, lâu mọc') },
+                    { text: 'Tóc bết dính và gàu', action: () => nextState('Tóc bết dính và gàu') }
+                ]);
+            }, 1000);
+        }
+
+        function nextState(userChoice) {
+            addUserMsg(userChoice);
+            
+            if (chatState === 0) {
+                // Khảo sát phụ (State 1)
+                chatState = 1;
+                addBotMsg('Mình hiểu rồi. Vậy da đầu bạn hiện tại thuộc loại nào để Herbario tư vấn chuẩn nhất ạ?', 1000);
+                setTimeout(() => {
+                    renderOptions([
+                        { text: 'Da Dầu (Mau bết)', action: () => finishChat('Da Dầu') },
+                        { text: 'Da Khô (Dễ xơ rối)', action: () => finishChat('Da Khô') },
+                        { text: 'Da Hỗn Hợp / Bình Thường', action: () => finishChat('Da Hỗn Hợp') }
+                    ]);
+                }, 1500);
+            }
+        }
+
+        function finishChat(userChoice) {
+            addUserMsg(userChoice);
+            // Chốt đơn (State 2)
+            let resultText = `Tuyệt vời! Với tình trạng tóc của bạn, **Nước xịt Vỏ Bưởi & Bồ Kết Herbario** là giải pháp hoàn hảo. Hoạt chất Limonene sẽ giúp làm sạch, kháng khuẩn và kích mọc tóc cực nhanh chỉ sau 14 ngày. <br><br> 
+            <a href="index.html#checkout" class="mt-2 block w-full text-center bg-herbario-dark text-white font-bold py-2 rounded-lg hover:bg-black transition-colors">👉 Đặt mua ngay - Ưu đãi 20%</a>`;
+            
+            addBotMsg(resultText, 1200);
+        }
+
+        function renderOptions(opts) {
+            chatOptions.innerHTML = '';
+            opts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left px-4 py-2 border border-herbario-green text-herbario-green rounded-xl hover:bg-green-50 font-medium text-sm transition-colors';
+                btn.innerText = opt.text;
+                btn.onclick = opt.action;
+                chatOptions.appendChild(btn);
+            });
+        }
+
+        // Lưu & Khôi phục lịch sử (LocalStorage)
+        function saveChat() {
+            localStorage.setItem('herbarioChat', chatBody.innerHTML);
+            localStorage.setItem('herbarioState', chatState);
+        }
+
+        window.onload = () => {
+            const savedChat = localStorage.getItem('herbarioChat');
+            if (savedChat) {
+                chatBody.innerHTML = savedChat;
+                chatState = parseInt(localStorage.getItem('herbarioState')) || 0;
+                // Nếu đã chat xong, để trống options
+            }
+        }
+    </script>
+</body>
+</html>

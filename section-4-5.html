@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbario | Bằng Chứng Thực Tế & So Sánh</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        herbario: {
+                            green: '#2D5A27',
+                            cream: '#F9F5F0',
+                            dark: '#333333',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { background-color: #F9F5F0; color: #333333; }
+        
+        /* Ẩn scrollbar cho khu vực Video 9:16 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Style cho thanh trượt Before/After */
+        .slider-container { position: relative; overflow: hidden; border-radius: 1rem; }
+        .slider-image-before { position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; z-index: 10; border-right: 2px solid #fff; }
+        .slider-image-before img { width: 200vw; max-width: none; height: 100%; object-fit: cover; }
+        @media (min-width: 768px) { .slider-image-before img { width: 100%; } }
+        
+        .slider-control {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;
+            opacity: 0; cursor: ew-resize;
+        }
+        .slider-button {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 40px; height: 40px; background-color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; z-index: 15;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); pointer-events: none;
+            color: #2D5A27;
+        }
+
+        /* Placeholder styles */
+        .before-placeholder { background: repeating-linear-gradient(-45deg, #e5e5e5, #e5e5e5 10px, #d4d4d4 10px, #d4d4d4 20px); }
+        .after-placeholder { background: repeating-linear-gradient(45deg, #2D5A2720, #2D5A2720 10px, #2D5A2710 10px, #2D5A2710 20px); }
+        .video-placeholder { background: linear-gradient(180deg, #d4d4d4 0%, #a3a3a3 100%); }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <main>
+
+        <section class="py-16 md:py-32 bg-herbario-cream overflow-hidden">
+            <div class="max-w-[1200px] mx-auto px-4 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+                    <span class="block text-herbario-green font-semibold tracking-widest uppercase text-sm mb-4">Kết Quả Thật - Cảm Xúc Thật</span>
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-herbario-dark leading-tight mb-6">
+                        Hàng ngàn mái tóc đã được <br class="hidden md:block"> <span class="italic font-medium text-herbario-green">"hồi sinh"</span> nhờ Herbario.
+                    </h2>
+                    <p class="text-base md:text-lg text-gray-600">
+                        95% người dùng thấy rõ tóc con mọc lởm chởm và giảm gãy rụng đáng kể chỉ sau 4 tuần sử dụng đều đặn.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 md:mb-24">
+                    
+                    <div class="relative w-full aspect-[4/3] md:aspect-[16/10] bg-white rounded-2xl shadow-lg slider-container" id="ba-slider">
+                        <div class="absolute inset-0 after-placeholder flex items-center justify-end pr-8">
+                            <img src="" alt="" class="w-full h-full object-cover absolute inset-0 hidden">
+                            <span class="relative z-10 text-herbario-green font-serif font-bold text-2xl bg-white/80 px-4 py-2 rounded-lg">SAU 4 TUẦN</span>
+                        </div>
+                        
+                        <div class="slider-image-before before-placeholder flex items-center justify-start pl-8" id="ba-before">
+                            <img src="" alt="" class="hidden">
+                            <span class="relative z-10 text-gray-500 font-serif font-bold text-2xl bg-white/80 px-4 py-2 rounded-lg whitespace-nowrap">TRƯỚC KHI DÙNG</span>
+                        </div>
+                        
+                        <div class="slider-button" id="ba-button">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-control" id="ba-range">
+                    </div>
+
+                    <div class="flex flex-col justify-center px-4 lg:px-0">
+                        <svg class="w-12 h-12 text-herbario-green/20 mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                        <blockquote class="font-serif text-xl md:text-2xl lg:text-3xl leading-relaxed text-herbario-dark mb-8">
+                            "Sự kết hợp giữa Limonene trong vỏ bưởi và Saponin từ bồ kết là một minh chứng xuất sắc của khoa học mỹ phẩm xanh. Nó làm sạch sâu mà không hề phá vỡ màng ẩm tự nhiên của da đầu."
+                        </blockquote>
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-gray-300"></div>
+                            <div>
+                                <h4 class="font-bold text-herbario-dark text-lg">Dr. Phương Lê</h4>
+                                <p class="text-sm text-gray-500">Chuyên gia Da liễu & Chăm sóc Tóc</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="font-serif text-2xl font-bold text-herbario-dark">Trải nghiệm thực tế</h3>
+                        <div class="hidden md:flex gap-2">
+                            <button class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-herbario-dark hover:border-herbario-green hover:text-herbario-green transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+                            <button class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-herbario-dark hover:border-herbario-green hover:text-herbario-green transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-4 md:gap-6 pb-4 -mx-4 px-4 md:mx-0 md:px-0">
+                        
+                        <div class="min-w-[240px] md:min-w-[280px] aspect-[9/16] rounded-2xl relative overflow-hidden snap-center group cursor-pointer video-placeholder shadow-sm">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors z-10 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full p-4 z-20 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                <p class="text-sm font-medium line-clamp-2">"Xịt thấm nhanh cực kì, mùi bưởi thơm như đi Spa vậy..."</p>
+                                <p class="text-xs text-white/70 mt-1">@mebim_sua99</p>
+                            </div>
+                        </div>
+
+                        <div class="min-w-[240px] md:min-w-[280px] aspect-[9/16] rounded-2xl relative overflow-hidden snap-center group cursor-pointer video-placeholder shadow-sm">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors z-10 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full p-4 z-20 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                <p class="text-sm font-medium line-clamp-2">"Tóc con mọc lởm chởm sau 1 tháng chăm chỉ xịt Herbario."</p>
+                                <p class="text-xs text-white/70 mt-1">@minhngoc_review</p>
+                            </div>
+                        </div>
+
+                        <div class="min-w-[240px] md:min-w-[280px] aspect-[9/16] rounded-2xl relative overflow-hidden snap-center group cursor-pointer video-placeholder shadow-sm">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors z-10 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full p-4 z-20 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                <p class="text-sm font-medium line-clamp-2">"Đỉnh của chóp, không hề bị bết tóc như mấy loại dầu bưởi tự nấu."</p>
+                                <p class="text-xs text-white/70 mt-1">@trang_beauty</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="py-16 md:py-32 bg-white">
+            <div class="max-w-[1000px] mx-auto px-4 lg:px-8">
+                
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-herbario-dark mb-6">Sự Khác Biệt Độc Bản</h2>
+                    <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">Vì sao Herbario là lựa chọn số 1 của cộng đồng làm đẹp thuần chay so với các dòng xịt tóc công nghiệp?</p>
+                </div>
+
+                <div class="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200">
+                                <th class="py-6 px-8 font-serif text-lg text-gray-500 w-1/3">Đặc điểm</th>
+                                <th class="py-6 px-8 font-serif text-xl text-herbario-green font-bold w-1/3 border-x border-gray-200 bg-green-50/30">Xịt tóc Herbario</th>
+                                <th class="py-6 px-8 font-serif text-lg text-gray-500 w-1/3">Sản phẩm công nghiệp</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-base">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-8 font-medium text-gray-800">Thành phần</td>
+                                <td class="py-5 px-8 font-bold text-herbario-dark border-x border-gray-200 bg-green-50/30 flex items-start gap-2">
+                                    <svg class="w-5 h-5 text-herbario-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                    100% Thực vật (Bưởi, Bồ kết)
+                                </td>
+                                <td class="py-5 px-8 text-gray-500">Chứa Paraben, Silicon hoặc hương liệu</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-8 font-medium text-gray-800">Cảm giác trên tóc</td>
+                                <td class="py-5 px-8 font-bold text-herbario-dark border-x border-gray-200 bg-green-50/30 flex items-start gap-2">
+                                    <svg class="w-5 h-5 text-herbario-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                    Thấm nhanh, không bết dính
+                                </td>
+                                <td class="py-5 px-8 text-gray-500">Dễ bết rít, nặng đầu sau 1 ngày</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-8 font-medium text-gray-800">Nguồn gốc nguyên liệu</td>
+                                <td class="py-5 px-8 font-bold text-herbario-dark border-x border-gray-200 bg-green-50/30 flex items-start gap-2">
+                                    <svg class="w-5 h-5 text-herbario-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                    Nông nghiệp Việt Nam bền vững
+                                </td>
+                                <td class="py-5 px-8 text-gray-500">Nguyên liệu nhập khẩu không rõ ràng</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-8 font-medium text-gray-800">Cam kết đạo đức</td>
+                                <td class="py-5 px-8 font-bold text-herbario-dark border-x border-gray-200 bg-green-50/30 flex items-start gap-2">
+                                    <svg class="w-5 h-5 text-herbario-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                    Không thử nghiệm trên động vật
+                                </td>
+                                <td class="py-5 px-8 text-gray-500">Thường không có cam kết rõ ràng</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="md:hidden flex flex-col gap-6">
+                    <div class="bg-herbario-green/5 border-2 border-herbario-green rounded-2xl p-6 relative">
+                        <div class="absolute top-0 right-0 bg-herbario-green text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl uppercase">Herbario</div>
+                        <h3 class="font-serif text-2xl font-bold text-herbario-green mb-6">Xịt Tóc Thuần Chay</h3>
+                        
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-herbario-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-herbario-dark font-medium">100% Thực vật (Vỏ bưởi, Bồ kết)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-herbario-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-herbario-dark font-medium">Thấm cực nhanh, không bết dính</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-herbario-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-herbario-dark font-medium">Nông nghiệp Việt Nam bền vững</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-herbario-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-herbario-dark font-medium">Không thử nghiệm trên động vật</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+                        <h3 class="font-serif text-xl font-bold text-gray-500 mb-6">Sản phẩm công nghiệp</h3>
+                        
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3 opacity-70">
+                                <svg class="w-6 h-6 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                <span class="text-gray-600">Chứa Paraben, Silicon hóa học</span>
+                            </li>
+                            <li class="flex items-start gap-3 opacity-70">
+                                <svg class="w-6 h-6 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                <span class="text-gray-600">Dễ gây bết tóc, nặng đầu</span>
+                            </li>
+                            <li class="flex items-start gap-3 opacity-70">
+                                <svg class="w-6 h-6 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                <span class="text-gray-600">Nguyên liệu không rõ nguồn gốc</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const sliderRange = document.getElementById('ba-range');
+        const sliderBefore = document.getElementById('ba-before');
+        const sliderButton = document.getElementById('ba-button');
+
+        sliderRange.addEventListener('input', (e) => {
+            const value = e.target.value;
+            sliderBefore.style.width = `${value}%`;
+            sliderButton.style.left = `${value}%`;
+        });
+    </script>
+</body>
+</html>

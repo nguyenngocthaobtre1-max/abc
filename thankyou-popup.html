@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbario | Cảm Ơn & Tri Ân</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        herbario: {
+                            green: '#2D5A27',
+                            cream: '#F9F5F0',
+                            dark: '#333333',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { background-color: #F9F5F0; color: #333333; overflow-x: hidden; }
+        
+        /* Hiệu ứng Pop-up mượt mà */
+        .popup-overlay {
+            opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .popup-overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        .popup-content {
+            transform: scale(0.95) translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: 0.1s;
+        }
+        .popup-overlay.active .popup-content {
+            transform: scale(1) translateY(0); opacity: 1;
+        }
+
+        /* Pháo hoa Canvas nằm dưới text nhưng trên background */
+        #confetti-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
+        }
+
+        /* Video Placeholder */
+        .video-packing {
+            background: linear-gradient(135deg, #e5e5e5 0%, #f2f2f2 100%);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased relative min-h-screen flex flex-col items-center justify-center">
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <main class="relative z-10 w-full max-w-[800px] mx-auto px-4 py-12 md:py-20 text-center">
+        
+        <a href="index.html" class="inline-block mb-10">
+            <span class="font-serif font-bold text-3xl tracking-widest text-herbario-green uppercase">Herbario</span>
+        </a>
+
+        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-green-50 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-herbario-cream rounded-full blur-2xl"></div>
+
+            <div class="relative z-10">
+                <div class="w-20 h-20 bg-herbario-green text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-900/20">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-herbario-dark mb-4">
+                    Chào mừng bạn đã gia nhập cộng đồng <span class="text-herbario-green">Yêu Tóc Thuần Chay!</span>
+                </h1>
+                <p class="text-gray-600 mb-8 text-base md:text-lg">
+                    Đơn hàng của bạn đã được xác nhận. Chúng tôi đang chuẩn bị những tinh túy thiên nhiên tốt nhất để gửi đến bạn.
+                </p>
+
+                <div class="bg-gray-50 rounded-2xl p-6 mb-10 inline-block text-left border border-gray-100 min-w-[280px]">
+                    <div class="flex justify-between border-b border-gray-200 pb-3 mb-3">
+                        <span class="text-gray-500 font-medium">Mã đơn hàng:</span>
+                        <span class="font-bold text-herbario-dark">#HB2026VN</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-3 mb-3">
+                        <span class="text-gray-500 font-medium">Tổng thanh toán:</span>
+                        <span class="font-bold text-herbario-green text-lg">245.000đ</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500 font-medium">Dự kiến giao:</span>
+                        <span class="font-bold text-herbario-dark">2-3 ngày tới</span>
+                    </div>
+                </div>
+
+                <div class="mb-10 w-full max-w-sm mx-auto aspect-video video-packing rounded-2xl overflow-hidden relative shadow-sm border border-gray-200 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <svg class="w-12 h-12 text-herbario-green opacity-50 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="relative z-10 text-xs font-bold text-gray-500 bg-white/80 px-3 py-1 rounded backdrop-blur-sm mt-16">[Video 5s: Nhân viên Herbario đóng gói cẩn thận]</span>
+                </div>
+
+                <div class="border-t border-gray-100 pt-8">
+                    <p class="font-medium text-herbario-dark mb-4">Trong lúc chờ đợi, hãy tham gia Hội Chị Em Yêu Tóc Herbario để nhận bí kíp mỗi ngày nhé!</p>
+                    <div class="flex items-center justify-center gap-4 mb-8">
+                        <a href="#" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-herbario-green hover:text-white hover:border-herbario-green transition-all text-gray-500 font-bold text-sm shadow-sm">FB</a>
+                        <a href="#" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-herbario-green hover:text-white hover:border-herbario-green transition-all text-gray-500 font-bold text-sm shadow-sm">IG</a>
+                        <a href="#" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-herbario-green hover:text-white hover:border-herbario-green transition-all text-gray-500 font-bold text-sm shadow-sm">TT</a>
+                    </div>
+
+                    <a href="blog.html" class="inline-flex items-center justify-center px-8 py-4 bg-herbario-dark text-white font-semibold text-sm rounded-xl hover:bg-black transition-colors shadow-md uppercase tracking-wider min-h-[48px]">
+                        Tiếp tục tìm hiểu mẹo chăm sóc tóc
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button onclick="showExitPopup()" class="fixed bottom-4 left-4 text-xs bg-gray-200 text-gray-600 px-3 py-1 rounded opacity-50 hover:opacity-100 z-50">Test Pop-up</button>
+
+    <div id="exitPopup" class="fixed inset-0 z-[200] popup-overlay bg-herbario-dark/60 backdrop-blur-sm flex items-center justify-center p-4">
+        
+        <div class="popup-content bg-white w-full max-w-[600px] rounded-3xl shadow-2xl overflow-hidden relative flex flex-col md:flex-row">
+            
+            <button onclick="hideExitPopup()" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white rounded-full p-1 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="w-full md:w-2/5 bg-herbario-cream flex flex-col items-center justify-center p-6 border-b md:border-b-0 md:border-r border-gray-100 relative">
+                <div class="absolute top-4 left-4 w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md animate-bounce">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+                </div>
+                <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-inner text-xs text-gray-400 font-medium text-center border-4 border-gray-50 mb-4">
+                    [Ảnh Xịt<br>Bưởi 3D]
+                </div>
+                <div class="text-herbario-green font-bold text-xl uppercase tracking-widest">Herbario</div>
+            </div>
+
+            <div class="w-full md:w-3/5 p-8 flex flex-col justify-center text-center md:text-left">
+                <h3 class="font-serif text-2xl font-bold text-herbario-dark mb-2 leading-tight">Đừng để mái tóc rụng thêm một ngày nào nữa! 🌿</h3>
+                <p class="text-sm text-gray-600 mb-6">Mái tóc dày mượt đang ở rất gần bạn. Herbario gửi tặng bạn món quà nhỏ để trải nghiệm ngay hôm nay.</p>
+                
+                <div class="bg-red-50 border border-red-100 rounded-xl p-4 mb-6 flex items-center justify-between">
+                    <div>
+                        <span class="block text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Mã giảm 10%</span>
+                        <span class="font-serif font-bold text-xl text-herbario-dark select-all">HERBARIO10</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-xs text-gray-500 mb-1">Hết hạn trong:</span>
+                        <span id="countdown" class="font-bold text-lg text-red-600 font-mono bg-white px-2 py-1 rounded border border-red-100 shadow-sm">05:00</span>
+                    </div>
+                </div>
+
+                <a href="index.html#checkout" onclick="applyDiscountAndGo()" class="w-full flex items-center justify-center px-6 py-4 bg-herbario-green text-white font-bold text-sm rounded-xl hover:bg-green-800 transition-colors shadow-lg hover:shadow-xl mb-4 min-h-[48px] uppercase">
+                    Lấy Mã Và Mua Ngay
+                </a>
+                
+                <button onclick="hideExitPopup()" class="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors">
+                    Không, tôi muốn rụng tóc tiếp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================= 1. GREEN CONFETTI EFFECT (THUẦN JS) =================
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const colors = ['#2D5A27', '#4CAF50', '#81C784', '#D4AF37', '#F9F5F0'];
+
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                w: Math.random() * 10 + 5,
+                h: Math.random() * 10 + 5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                vy: Math.random() * 3 + 2,
+                vx: Math.random() * 2 - 1,
+                rot: Math.random() * 360,
+                rotSpeed: Math.random() * 5 - 2.5
+            });
+        }
+
+        function drawConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.save();
+                ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
+                ctx.rotate(p.rot * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+
+                p.y += p.vy;
+                p.x += p.vx;
+                p.rot += p.rotSpeed;
+
+                if (p.y > canvas.height) {
+                    p.y = -p.h;
+                    p.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(drawConfetti);
+        }
+        drawConfetti();
+
+        // Xử lý Resize Canvas
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+
+        // ================= 2. EXIT INTENT POP-UP LOGIC =================
+        const popup = document.getElementById('exitPopup');
+        let popupShown = sessionStorage.getItem('herbarioPopupShown'); // Chỉ hiện 1 lần mỗi phiên
+        let timerInterval;
+
+        function showExitPopup() {
+            if (!popupShown) {
+                popup.classList.add('active');
+                sessionStorage.setItem('herbarioPopupShown', 'true');
+                popupShown = true;
+                startCountdown(5 * 60); // 5 phút
+            }
+        }
+
+        function hideExitPopup() {
+            popup.classList.remove('active');
+            clearInterval(timerInterval);
+        }
+
+        // Bắt sự kiện rê chuột ra khỏi màn hình phía trên (Desktop Exit Intent)
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0) {
+                showExitPopup();
+            }
+        });
+
+        // Đếm ngược 5 phút
+        function startCountdown(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('countdown');
+            clearInterval(timerInterval);
+            timerInterval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(timerInterval);
+                    display.parentElement.parentElement.innerHTML = '<span class="text-sm font-bold text-gray-400">Mã giảm giá đã hết hạn!</span>';
+                }
+            }, 1000);
+        }
+
+        function applyDiscountAndGo() {
+            // Logic lưu mã giảm giá vào LocalStorage để form Checkout tự nhận diện
+            localStorage.setItem('herbarioDiscount', 'HERBARIO10');
+            // Chuyển hướng (Trong demo thì chỉ ẩn popup)
+            hideExitPopup();
+        }
+    </script>
+
+</body>
+</html>

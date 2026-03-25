@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbario | Thanh Toán & Footer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        herbario: {
+                            green: '#2D5A27',
+                            cream: '#F9F5F0',
+                            dark: '#333333',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { background-color: #F9F5F0; color: #333333; }
+        
+        /* Ẩn mũi tên của input type number */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        
+        /* Input focus styling chuẩn e-commerce */
+        .form-input {
+            width: 100%; border: 1px solid #e5e7eb; border-radius: 0.75rem; 
+            padding: 1rem 1.25rem; font-size: 1rem; transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+        .form-input:focus {
+            outline: none; border-color: #2D5A27; box-shadow: 0 0 0 4px rgba(45, 90, 39, 0.1);
+            background-color: #ffffff;
+        }
+
+        .product-img-placeholder {
+            background: radial-gradient(circle, #f2f2f2 0%, #e5e5e5 100%);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <main>
+
+        <section id="checkout" class="py-16 md:py-32 bg-herbario-cream">
+            <div class="max-w-[1000px] mx-auto px-4 lg:px-8">
+                
+                <div class="text-center mb-10 md:mb-16">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-herbario-dark mb-4">Hoàn Tất Đặt Hàng</h2>
+                    <p class="text-base text-gray-600">Nhập thông tin bên dưới, Herbario sẽ giao hàng đến tận tay bạn.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                    
+                    <div class="w-full md:w-5/12 bg-gray-50 p-6 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-full aspect-square rounded-2xl product-img-placeholder flex items-center justify-center mb-8 relative shadow-inner">
+                                <span class="text-gray-400 font-medium text-sm">[Ảnh Xịt Tóc 3D HD]</span>
+                                <div class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Giảm 20%</div>
+                            </div>
+                            
+                            <h3 class="font-serif text-xl md:text-2xl font-bold text-herbario-dark mb-2">Xịt dưỡng tóc Vỏ bưởi & Bồ kết</h3>
+                            <p class="text-sm text-gray-500 mb-6">Dung tích: 100ml • Dạng nước (Water-based)</p>
+                            
+                            <div class="flex items-center justify-between mb-8 pb-8 border-b border-gray-200">
+                                <div>
+                                    <span class="block text-sm text-gray-400 line-through mb-1">320.000đ</span>
+                                    <span class="font-serif text-2xl font-bold text-herbario-green">245.000đ</span>
+                                </div>
+                                
+                                <div class="flex items-center border border-gray-200 rounded-xl bg-white h-[44px]">
+                                    <button type="button" class="px-4 text-gray-500 hover:text-herbario-green transition-colors text-lg" onclick="updateQty(-1)">−</button>
+                                    <input type="number" id="qty" value="1" min="1" class="w-10 text-center font-semibold text-herbario-dark outline-none bg-transparent" readonly>
+                                    <button type="button" class="px-4 text-gray-500 hover:text-herbario-green transition-colors text-lg" onclick="updateQty(1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-herbario-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Freeship cho đơn từ 250k
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-herbario-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Kiểm tra hàng trước khi thanh toán
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="w-full md:w-7/12 p-6 md:p-10">
+                        <form id="checkoutForm" onsubmit="event.preventDefault(); alert('Đã chốt đơn thành công!');">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <input type="text" placeholder="Họ và tên của bạn" required class="form-input min-h-[48px]">
+                                </div>
+                                <div>
+                                    <input type="tel" placeholder="Số điện thoại" required pattern="[0-9]{10}" class="form-input min-h-[48px]">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <input type="text" placeholder="Địa chỉ nhận hàng (Số nhà, Tên đường...)" required class="form-input min-h-[48px]">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <select required class="form-input min-h-[48px] text-gray-600 bg-white cursor-pointer appearance-none">
+                                    <option value="" disabled selected>Chọn Tỉnh / Thành</option>
+                                    <option value="hcm">Hồ Chí Minh</option>
+                                    <option value="hn">Hà Nội</option>
+                                </select>
+                                <select required class="form-input min-h-[48px] text-gray-600 bg-white cursor-pointer appearance-none">
+                                    <option value="" disabled selected>Chọn Quận / Huyện</option>
+                                    <option value="q1">Quận 1</option>
+                                    <option value="bt">Bình Thạnh</option>
+                                </select>
+                            </div>
+
+                            <h4 class="font-serif font-semibold text-herbario-dark mb-4">Phương thức thanh toán</h4>
+                            <div class="space-y-3 mb-10">
+                                <label class="flex items-center p-4 border-2 border-herbario-green rounded-xl bg-green-50/30 cursor-pointer">
+                                    <input type="radio" name="payment" checked class="w-5 h-5 text-herbario-green focus:ring-herbario-green border-gray-300">
+                                    <div class="ml-4 flex flex-col">
+                                        <span class="font-semibold text-herbario-dark text-sm">Thanh toán khi nhận hàng (COD)</span>
+                                        <span class="text-xs text-gray-500">Thanh toán bằng tiền mặt khi giao hàng</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-center p-4 border border-gray-200 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors">
+                                    <input type="radio" name="payment" class="w-5 h-5 text-herbario-green focus:ring-herbario-green border-gray-300">
+                                    <div class="ml-4 flex flex-col">
+                                        <span class="font-semibold text-gray-700 text-sm">Chuyển khoản ngân hàng</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="border-t border-gray-100 pt-6">
+                                <div class="flex justify-between items-end mb-6">
+                                    <span class="text-gray-500 font-medium">Tổng thanh toán:</span>
+                                    <div class="text-right">
+                                        <span class="block font-serif text-3xl font-bold text-herbario-green" id="totalPrice">245.000đ</span>
+                                    </div>
+                                </div>
+                                <button type="submit" class="w-full bg-herbario-green hover:bg-green-800 text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px] uppercase tracking-wider">
+                                    Xác Nhận Đặt Hàng
+                                </button>
+                                <p class="text-center text-xs text-gray-400 mt-4">Thông tin của bạn được bảo mật tuyệt đối 100%.</p>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="bg-herbario-green text-herbario-cream pt-16 md:pt-24 border-t-4 border-herbario-gold">
+        
+        <div class="max-w-[1200px] mx-auto px-4 lg:px-8 mb-16 md:mb-24">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-white border-l-4 border-herbario-gold pl-4">Góc Cẩm Nang Tóc</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="#blog1" class="group block border border-white/10 p-6 rounded-2xl hover:bg-white/5 transition-colors">
+                    <span class="text-herbario-gold text-xs font-bold uppercase tracking-wider mb-2 block">Mẹo chăm sóc</span>
+                    <h4 class="font-serif text-lg font-semibold text-white group-hover:text-herbario-gold transition-colors leading-tight mb-3">Cách trị rụng tóc tại nhà với vỏ bưởi và bồ kết nguyên chất.</h4>
+                    <span class="text-sm text-herbario-cream/60 inline-flex items-center">Đọc bài viết <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>
+                </a>
+                <a href="#blog2" class="group block border border-white/10 p-6 rounded-2xl hover:bg-white/5 transition-colors">
+                    <span class="text-herbario-gold text-xs font-bold uppercase tracking-wider mb-2 block">Kiến thức</span>
+                    <h4 class="font-serif text-lg font-semibold text-white group-hover:text-herbario-gold transition-colors leading-tight mb-3">Tại sao xịt tóc Herbario lại được hàng ngàn mẹ bỉm sữa tin dùng?</h4>
+                    <span class="text-sm text-herbario-cream/60 inline-flex items-center">Đọc bài viết <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>
+                </a>
+                <a href="#blog3" class="group block border border-white/10 p-6 rounded-2xl hover:bg-white/5 transition-colors">
+                    <span class="text-herbario-gold text-xs font-bold uppercase tracking-wider mb-2 block">Xu hướng</span>
+                    <h4 class="font-serif text-lg font-semibold text-white group-hover:text-herbario-gold transition-colors leading-tight mb-3">Mỹ phẩm thuần chay: Tiêu chuẩn vàng cho mái tóc chắc khỏe.</h4>
+                    <span class="text-sm text-herbario-cream/60 inline-flex items-center">Đọc bài viết <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-[1200px] mx-auto px-4 lg:px-8 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-t border-white/10 pt-12">
+                
+                <div class="lg:col-span-1">
+                    <a href="#" class="font-serif font-bold text-3xl tracking-widest text-white uppercase mb-6 block">Herbario</a>
+                    <p class="text-sm text-herbario-cream/80 leading-relaxed mb-6">
+                        Tiên phong mang đến liệu pháp chăm sóc tóc thuần chay từ 100% thảo mộc nông nghiệp Việt Nam. An toàn, minh bạch và hiệu quả thật.
+                    </p>
+                    <a href="https://herbario.vn" target="_blank" class="text-sm font-semibold text-herbario-gold hover:text-white transition-colors flex items-center gap-2">
+                        Về Tập đoàn Herbario 
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-white text-lg mb-6">Hỗ Trợ Khách Hàng</h4>
+                    <ul class="space-y-4 text-sm text-herbario-cream/80">
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Tra cứu đơn hàng</a></li>
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Chính sách đổi trả 7 ngày</a></li>
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Hướng dẫn sử dụng hiệu quả</a></li>
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-white text-lg mb-6">Cộng Đồng & Đối Tác</h4>
+                    <ul class="space-y-4 text-sm text-herbario-cream/80">
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Đăng ký làm Đại lý phân phối</a></li>
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Câu hỏi thường gặp (FAQ)</a></li>
+                        <li><a href="#" class="hover:text-herbario-gold transition-colors block py-1">Đánh giá từ khách hàng</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-white text-lg mb-6">Chứng Nhận</h4>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-24 h-8 bg-white/20 rounded-md flex items-center justify-center text-[10px] font-bold text-white border border-white/30">BỘ CÔNG THƯƠNG</div>
+                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        </div>
+                    </div>
+                    
+                    <h4 class="font-serif font-bold text-white text-lg mb-4">Kết Nối</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-herbario-gold transition-colors text-white">FB</a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-herbario-gold transition-colors text-white">IG</a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-herbario-gold transition-colors text-white">TT</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-xs text-herbario-cream/50 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 Herbario Vietnam. Bản quyền thuộc về Tập đoàn Herbario.</p>
+                <p class="mt-2 md:mt-0">Thiết kế tối ưu cho trải nghiệm di động.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const unitPrice = 245000;
+        function updateQty(change) {
+            const input = document.getElementById('qty');
+            let newVal = parseInt(input.value) + change;
+            if(newVal >= 1) {
+                input.value = newVal;
+                // Cập nhật tổng tiền
+                const total = newVal * unitPrice;
+                document.getElementById('totalPrice').innerText = total.toLocaleString('vi-VN') + 'đ';
+            }
+        }
+    </script>
+
+</body>
+</html>
